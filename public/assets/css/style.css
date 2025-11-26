@@ -1,0 +1,79 @@
+:root{
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --muted: #6c757d;
+  --primary: #2563eb; /* azul más moderno */
+  --accent: #06b6d4;
+  --danger: #ef4444;
+  --success: #10b981;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(15,23,42,0.06);
+  --glass: rgba(255,255,255,0.6);
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:#0f172a;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  margin:0;
+  padding:0;
+}
+
+/* Layout */
+.app-shell{display:flex;min-height:100vh;gap:24px}
+.app-sidebar{
+  width:250px;background:linear-gradient(180deg,rgba(37,99,235,0.95),#084298);
+  color:#fff;padding:20px;border-radius:16px;box-shadow:var(--shadow);flex-shrink:0;
+}
+.app-main{flex:1;padding:28px}
+
+/* Sidebar items */
+.sidebar-brand{font-weight:700;font-size:1.15rem;display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.nav-links{list-style:none;padding:0;margin:0}
+.nav-links li{margin:6px 0}
+.nav-links a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;color:rgba(255,255,255,0.95);text-decoration:none}
+.nav-links a:hover, .nav-links a.active{background:rgba(255,255,255,0.06)}
+
+.card{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:18px;
+}
+
+/* KPI */
+.kpi{display:flex;gap:12px;align-items:center}
+.kpi .value{font-weight:700;font-size:1.35rem}
+.kpi .label{color:var(--muted);font-size:.85rem}
+
+/* Progress and badges */
+.badge-soft{display:inline-block;padding:6px 10px;border-radius:999px;font-size:.78rem}
+.badge-danger{background:rgba(239,68,68,0.12);color:var(--danger)}
+.badge-warning{background:rgba(250,204,21,0.12);color:#b45309}
+.badge-success{background:rgba(16,185,129,0.12);color:var(--success)}
+
+/* Tables */
+.table thead th{border-bottom:1px solid #eef2ff}
+.table tbody tr:hover{background:#fbfdff}
+
+/* Floating labels (Bootstrap-compatible) */
+.form-floating .form-control:focus ~ label,
+.form-floating .form-control:not(:placeholder-shown) ~ label{
+  transform: translateY(-1.6rem) scale(.85);opacity:1;
+}
+
+/* Modal tweaks */
+.modal-content{border-radius:12px}
+
+/* Small animations */
+.fade-in{animation:fadeIn .35s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Dark mode */
+[data-theme="dark"]{
+  --bg:#071129;--card:#071a2b;color:#e6eef6;
+}
+[data-theme="dark"] body{background:var(--bg);color:var(--card)}
+[data-theme="dark"] .app-sidebar{background:linear-gradient(180deg,#022047,#012233)}
