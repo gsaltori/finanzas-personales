@@ -1,0 +1,14 @@
+# public/.htaccess
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Evitar reescritura para archivos reales
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Redirigir todo a index.php
+  RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# Asegúrate de AllowOverride All en el virtualhost de WAMP para que .htaccess funcione.

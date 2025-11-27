@@ -1,23 +1,19 @@
 <?php
-class User extends BaseModel {
-  public function create(string $email, string $hash, string $nombre) {
-    $sql = "INSERT INTO usuarios (email,password,nombre) VALUES (:email,:password,:nombre)";
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute([':email' => $email, ':password' => $hash, ':nombre' => $nombre]);
-    return (int)$this->db->lastInsertId();
-  }
+// app/Models/User.php
+namespace App\Models;
 
-  public function findByEmail(string $email) {
-    $sql = "SELECT * FROM usuarios WHERE email = :email LIMIT 1";
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute([':email' => $email]);
-    return $stmt->fetch();
-  }
+class User
+{
+    public ?int $id = null;
+    public string $email = '';
+    public string $password = ''; // hashed
 
-  public function findById(int $id) {
-    $sql = "SELECT id,email,nombre,preferencias,fecha_creacion FROM usuarios WHERE id = :id LIMIT 1";
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute([':id' => $id]);
-    return $stmt->fetch();
-  }
+    public static function fromRow(array $row): self
+    {
+        $u = new self();
+        $u->id = $row['id'] ?? null;
+        $u->email = $row['email'] ?? '';
+        $u->password = $row['password'] ?? '';
+        return $u;
+    }
 }
