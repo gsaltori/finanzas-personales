@@ -1,0 +1,19 @@
+diff --git a/index.php b/index.php
+index 3fb1a12..c9b8a91 100644
+--- a/index.php
++++ b/index.php
+@@ -1,9 +1,15 @@
+ <?php
+
++require __DIR__ . '/vendor/autoload.php';
++
+ session_start();
+
+-require_once 'routes/web.php';
++// Load environment variables (.env)
++if (file_exists(__DIR__ . '/.env')) {
++    Dotenv\Dotenv::createImmutable(__DIR__)->load();
++}
++
++require_once __DIR__ . '/routes/web.php';
+
